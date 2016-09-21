@@ -36,7 +36,8 @@
                         <h1>DJ KREG and <span class="light">HACK</span>GT Present</h1>
                         <h1 class="brand-heading"><span class="light">SILENT</span> DISCO</h1>
                         <p class="intro-text">Listen in at 3:30am on Saturday</p>
-                        <audio controls autoplay="autoplay"><source src="http://str.at:42080/djkreglive.mp3" type="audio/mpeg"><source src="http://str.at:42080/djkreglive.ogg" type="audio/ogg">Your browser does not support the audio element.</audio>
+                        <audio id="player" controls autoplay="autoplay"><source src="http://str.at:42080/djkreglive.mp3" type="audio/mpeg"><source src="http://str.at:42080/djkreglive.ogg" type="audio/ogg">Your browser does not support the audio element.</audio>
+                        <a href="http://str.at:42080/djkreglive.mp3.m3u" class="btn btn-primary btn-lg" id="stream">Start Stream</a>
                     </div>
                 </div>
             </div>
@@ -45,6 +46,14 @@
     
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+    
+    <script>
+        if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i))) {
+            $('#player').hide();
+        } else {
+            $('#stream').hide();
+        }
+    </script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
