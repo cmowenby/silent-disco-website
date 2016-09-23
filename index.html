@@ -38,6 +38,14 @@
                         <p class="intro-text">Listen in at 3:30am on Saturday</p>
                         <audio id="player" controls autoplay="autoplay"><source src="http://str.at:42080/djkreglive.mp3" type="audio/mpeg"><source src="http://str.at:42080/djkreglive.ogg" type="audio/ogg">Your browser does not support the audio element.</audio>
                         <a href="http://str.at:42080/djkreglive.mp3.m3u" class="btn btn-primary btn-lg" id="stream">Start Stream</a>
+                        <div id="early" class="panel panel-danger">
+                            <div class="panel-heading">
+                                You're early... or we're late!
+                            </div>
+                            <div class="panel-body" style="color: gray">
+                                Please tune in at 3:30am or refresh your browswer to listen in.
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,11 +56,27 @@
     <script src="js/jquery.js"></script>
     
     <script>
+        $("#early").hide();
+
+         
         if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i))) {
             $('#player').hide();
         } else {
             $('#stream').hide();
         }
+        
+        $.ajax({
+            type: "GET",
+            url: "http://str.at:42080/djkreglive.mp3",
+            timeout: 20,
+            error: function(xhr, error) {
+                if (xhr.status == 404) {
+                    $("#early").show();
+                    $('#stream').hide();
+                    $('#player').hide();
+                }
+            }
+        })
     </script>
 
     <!-- Bootstrap Core JavaScript -->
