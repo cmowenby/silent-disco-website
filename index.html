@@ -68,7 +68,7 @@
         $.ajax({
             type: "GET",
             url: "http://str.at:42080/djkreglive.mp3",
-            timeout: 20,
+            timeout: 200,
             error: function(xhr, error) {
                 if (xhr.status == 404) {
                     $("#early").show();
